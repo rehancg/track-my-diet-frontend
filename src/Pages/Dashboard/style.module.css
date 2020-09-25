@@ -1,0 +1,19 @@
+.container{
+    margin-top: 20px;
+}
+.col{
+    padding: 50px;
+    text-align: center;
+    background-color: gainsboro;
+}
+.sectionLabel{
+    font-size: 22px;
+}
+.logoutBtn{
+    margin-bottom: 10px;
+    margin-left: 93%;
+}
+.title{
+    text-align: center;
+    margin-bottom: 50px;
+}
