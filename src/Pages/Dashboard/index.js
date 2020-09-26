@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Api from '../../api';
+import Header from '../../components/header';
 import withAuth from '../../hoc/withAuth';
 import classes from './style.module.css'
 
 const Dashboard = (props) => {
-
-    const history = useHistory();
 
     useEffect(() => {
         let getDataAsync = async () => {
@@ -17,20 +16,13 @@ const Dashboard = (props) => {
         getDataAsync();
     }, [])
 
-    const logout = () => {
-        localStorage.clear('jwt');
-        history.replace('/login');
-    }
-
     return (
         <Container className={classes.container}>
-            <Button className={classes.logoutBtn} onClick={logout} variant="info" type="button">Logout</Button>
-
-            <h4 className={classes.title}>Track My Diet - Admin</h4>
+            <Header />
             <Card>
                 <Row>
                     <Col className={classes.col}>
-                        <Link to='/login'>
+                        <Link to='/foods'>
                             <label className={classes.sectionLabel}>Foods</label>
                         </Link>
                     </Col>
