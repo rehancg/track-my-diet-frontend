@@ -4,6 +4,8 @@ import Dashboard from './pages/Dashboard';
 import CreateFood from './pages/Foods/CreateFood';
 import FoodList from './pages/Foods/FoodList';
 import Login from './pages/Login';
+import CreateMealPlan from './pages/MealPlans/CreateMealPlan';
+import MealPlanList from './pages/MealPlans/MealPlanList';
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
         <Route exact path="/foods" render={props => <FoodList {...props} />} />
         <Route exact path="/foods/:id" render={props => <CreateFood {...props} />} />
         <Route exact path="/create-food" render={props => <CreateFood {...props} />} />
+        <Route exact path="/meal-plans" render={props => <MealPlanList {...props} />} />
+        <Route exact path="/meal-plans/:id" render={props => <CreateMealPlan {...props} />} />
+        <Route exact path="/create-meal-plan" render={props => <CreateMealPlan {...props} />} />
       </Router>
     </div>
   );

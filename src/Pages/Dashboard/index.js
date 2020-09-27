@@ -28,7 +28,7 @@ const Dashboard = (props) => {
                     </Col>
 
                     <Col className={classes.col}>
-                        <Link to='/login'>
+                        <Link to='/meal-plans'>
                             <label className={classes.sectionLabel}>Meal Plans</label>
                         </Link>
                     </Col>

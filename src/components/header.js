@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 
 import classes from './style.module.css'
@@ -13,9 +13,18 @@ const Header = () => {
         history.replace('/login');
     }
 
+    const goToHome = () => {
+        history.replace('/');
+    }
+
     return (
         <>
-            <Button className={classes.logoutBtn} onClick={logout} variant="link" type="button">Logout</Button>
+            <Row>
+                <div className={classes.btnContainer}>
+                    <Button onClick={goToHome} variant="link" type="button">Home</Button>
+                    <Button onClick={logout} variant="link" type="button">Logout</Button>
+                </div>
+            </Row>
 
             <h4 className={classes.title}>Track My Diet Dashboard</h4>
         </>

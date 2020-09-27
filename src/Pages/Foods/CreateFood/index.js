@@ -15,7 +15,7 @@ const CreateFood = () => {
     const [nutritionTypes, setNutritionTypes] = useState([]);
     const [foodTypes, setFoodTypes] = useState([]);
     const [eatingWindow, setEatingWindow] = useState([]);
-    const [data, setData] = useState({});
+    const [data, setData] = useState({ is_suppliment: false, is_budget: false });
     const [saving, setSaving] = useState(false);
 
     useEffect(() => {
@@ -89,9 +89,14 @@ const CreateFood = () => {
         setData({ ...data, is_budget: !data.is_budget })
     }
 
+    // On toggle is budget option 
+    const handleOnChangeIsSuppliment = () => {
+        setData({ ...data, is_suppliment: !data.is_suppliment })
+    }
+
     // On meta data change
     const onSelectMetaData = (type, e, meta) => {
-        const value = meta.find(x => x.id == e.target.value);
+        const value = meta.find(x => x.id === e.target.value);
         setData({ ...data, [type]: value })
     }
 
@@ -208,6 +213,15 @@ const CreateFood = () => {
                                 label="Is Budget Food"
                                 checked={data?.is_budget || false}
                                 onChange={handleOnChangeIsBudget}
+                            />
+                        </Col>
+
+                        <Col>
+                            <Form.Switch
+                                id="switchIsSuppliment"
+                                label="Is Suppliment"
+                                checked={data?.is_suppliment || false}
+                                onChange={handleOnChangeIsSuppliment}
                             />
                         </Col>
                     </Row>
