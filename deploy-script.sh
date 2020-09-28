@@ -1,9 +1,9 @@
 
 #!/bin/bash
-imageName=track-my-diet-admin:1.0
+imageName=tmd-admin-react:1.0
 containerName=tmdadmin
 
-sudo docker build -t $imageName -f Dockerfile  .
+sudo docker build -t $imageName .
 
 echo Delete old container...
 sudo docker rm -f $containerName
