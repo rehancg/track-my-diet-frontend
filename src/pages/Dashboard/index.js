@@ -11,7 +11,6 @@ const Dashboard = (props) => {
     useEffect(() => {
         let getDataAsync = async () => {
             const response = await Api.get('/meta/activity_levels');
-            console.log("response", response);
         }
         getDataAsync();
     }, [])
