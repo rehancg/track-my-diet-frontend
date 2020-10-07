@@ -96,7 +96,7 @@ const CreateFood = () => {
 
     // On meta data change
     const onSelectMetaData = (type, e, meta) => {
-        const value = meta.find(x => x.id === e.target.value);
+        const value = meta.find(x => x.id == e.target.value);
         setData({ ...data, [type]: value })
     }
 
