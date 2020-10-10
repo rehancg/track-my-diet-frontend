@@ -150,24 +150,36 @@ const CreateFood = () => {
                     {/* Food images */}
                     <Row className={classes.formRow}>
                         <Col>
-                            <Form.File
+                            {/* <Form.File
                                 className="position-relative"
                                 required
                                 name="file"
                                 label="Thumnail Image"
                                 onChange={handleOnThumbnailChange}
                                 feedbackTooltip
+                            /> */}
+                            <FormControl
+                                type="text"
+                                placeholder="Thumbnail Url"
+                                value={data?.thumbnail || ''}
+                                onChange={(e) => onChangeTextInput('thumbnail', e)}
                             />
                         </Col>
 
                         <Col>
-                            <Form.File
+                            {/* <Form.File
                                 className="position-relative"
                                 required
                                 name="file"
                                 label="Full Food Image"
                                 onChange={handleOnImageChange}
                                 feedbackTooltip
+                            /> */}
+                            <FormControl
+                                type="text"
+                                placeholder="Full image url"
+                                value={data?.image_url || ''}
+                                onChange={(e) => onChangeTextInput('image_url', e)}
                             />
                         </Col>
                     </Row>

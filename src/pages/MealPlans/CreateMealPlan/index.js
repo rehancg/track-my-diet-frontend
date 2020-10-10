@@ -200,13 +200,19 @@ const CreateMealPlan = () => {
                     {/* Food images */}
                     <Row className={classes.formRow}>
                         <Col>
-                            <Form.File
+                            {/* <Form.File
                                 className="position-relative"
                                 required
                                 name="file"
                                 label="Image"
                                 onChange={handleOnImageChanged}
                                 feedbackTooltip
+                            /> */}
+                            <FormControl
+                                type="text"
+                                placeholder="Image Url"
+                                value={data?.image_url || ''}
+                                onChange={(e) => onChangeTextInput('image_url', e)}
                             />
                         </Col>
 
