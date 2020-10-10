@@ -1,6 +1,9 @@
 .card{
     margin-bottom: 20px;
 }
+.card_header{
+    background-color: #f5f5f5;
+}
 .saveBtn{
     margin-bottom: 20px;
     margin-top: 5px;

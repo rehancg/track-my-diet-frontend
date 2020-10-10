@@ -54,7 +54,10 @@ const CreateMealPlan = () => {
             setSaving(true)
             const response = await func('/meal_plan', data);
             if (response.error) alert(response.error?.message || 'Meal creation failed ');
-            else alert('Mealplan successfully created!');
+            else {
+                alert('Mealplan successfully created!');
+                history.replace(`/meal-plans/${response.data.id}`)
+            }
             setSaving(false)
         } catch (error) {
             setSaving(false)
@@ -93,6 +96,18 @@ const CreateMealPlan = () => {
             ]
         })
         setShowFoodListModal(false)
+    }
+
+    useEffect(()=>{
+        calcluateTotalCalories();
+    },[data.items])
+
+    const calcluateTotalCalories = () => {
+        const calories = data.items?.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
+        setData({
+            ...data,
+            calories
+        })
     }
 
     const onChangeFoodEatingWindow = (e, meta, index) => {
@@ -139,7 +154,7 @@ const CreateMealPlan = () => {
             <Header />
             <Button variant="link" type="button" onClick={goBack}>Go back</Button>
             <Card className={classes.card}>
-                <Card.Body>
+                <Card.Body className={classes.card_header}>
                     <Card.Title>{isEdit ? `Update Meal Plan` : "Create New Meal Plan"}</Card.Title>
 
                     <Row className={classes.formRow}>
@@ -287,7 +302,7 @@ const CreateMealPlan = () => {
                         </Card.Body>
                     </Card>
                 )}
-            <AddFoodModal show={showFoodListModal} onSelect={handleAddNewFood} onClose={() => setShowFoodListModal(false)} />
+            <AddFoodModal show={showFoodListModal}  onSelect={handleAddNewFood} onClose={() => setShowFoodListModal(false)} />
         </Container>
     )
 }
