@@ -106,13 +106,13 @@ const CreateMealPlan = () => {
         const calories = data.items?.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
         const fat = data.items?.reduce((total, foodItem) => total + (foodItem.food.fat * foodItem.servings), 0);
         const protien = data.items?.reduce((total, foodItem) => total + (foodItem.food.protien * foodItem.servings), 0);
-        const carbs = data.items?.reduce((total, foodItem) => total + (foodItem.food.carbs * foodItem.servings), 0);
+        const carb = data.items?.reduce((total, foodItem) => total + (foodItem.food.carb * foodItem.servings), 0);
         setData({
             ...data,
             calories,
             fat,
             protien,
-            carbs
+            carb
         })
     }
 
