@@ -104,9 +104,15 @@ const CreateMealPlan = () => {
 
     const calcluateTotalCalories = () => {
         const calories = data.items?.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
+        const fat = data.items?.reduce((total, foodItem) => total + (foodItem.food.fat * foodItem.servings), 0);
+        const protien = data.items?.reduce((total, foodItem) => total + (foodItem.food.protien * foodItem.servings), 0);
+        const carbs = data.items?.reduce((total, foodItem) => total + (foodItem.food.carbs * foodItem.servings), 0);
         setData({
             ...data,
-            calories
+            calories,
+            fat,
+            protien,
+            carbs
         })
     }
 
@@ -175,7 +181,7 @@ const CreateMealPlan = () => {
                                 placeholder="Total Calories"
                                 aria-label="id"
                                 disabled
-                                value={data?.calories || 'Auto-generated'}
+                                value={`${data?.calories} P: ${data?.protien} C: ${data?.carbs} F:${data?.fat}` || 'Auto-generated'}
                             />
                         </Col>
                         <Col>
