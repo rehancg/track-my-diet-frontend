@@ -105,13 +105,13 @@ const CreateMealPlan = () => {
     const calcluateTotalCalories = () => {
         const calories = data.items?.reduce((total, foodItem) => total + (foodItem.food.calories * foodItem.servings), 0);
         const fat = data.items?.reduce((total, foodItem) => total + (foodItem.food.fat * foodItem.servings), 0);
-        const protien = data.items?.reduce((total, foodItem) => total + (foodItem.food.protien * foodItem.servings), 0);
+        const protein = data.items?.reduce((total, foodItem) => total + (foodItem.food.protein * foodItem.servings), 0);
         const carb = data.items?.reduce((total, foodItem) => total + (foodItem.food.carb * foodItem.servings), 0);
         setData({
             ...data,
             calories,
             fat,
-            protien,
+            protein,
             carb
         })
     }
@@ -181,7 +181,37 @@ const CreateMealPlan = () => {
                                 placeholder="Total Calories"
                                 aria-label="id"
                                 disabled
-                                value={`${data?.calories} P: ${data?.protien} C: ${data?.carbs} F:${data?.fat}` || 'Auto-generated'}
+                                value={`${data?.calories}` || 'Auto-generated'}
+                            />
+                        </Col>
+                        <Col>
+                            <Form.Label>Protein</Form.Label>
+                            <FormControl
+                                type="text"
+                                placeholder="Total Calories"
+                                aria-label="id"
+                                disabled
+                                value={`${data?.protien}` || 'Auto-generated'}
+                            />
+                        </Col>
+                        <Col>
+                            <Form.Label>Fats</Form.Label>
+                            <FormControl
+                                type="text"
+                                placeholder="Total Calories"
+                                aria-label="id"
+                                disabled
+                                value={`${data?.fat}` || 'Auto-generated'}
+                            />
+                        </Col>
+                        <Col>
+                            <Form.Label>Carbs</Form.Label>
+                            <FormControl
+                                type="text"
+                                placeholder="Total Calories"
+                                aria-label="id"
+                                disabled
+                                value={`${data?.carb}` || 'Auto-generated'}
                             />
                         </Col>
                         <Col>
