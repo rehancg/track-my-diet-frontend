@@ -114,10 +114,11 @@ const CreateMealPlan = () => {
             protein,
             carb
         })
+        console.log(data.items);
     }
 
     const onChangeFoodEatingWindow = (e, meta, index) => {
-        const eating_window = meta.find(x => x.id = e.target.value);
+        const eating_window = meta.find(x => x.id == e.target.value);
         const updatedItems = data.items.map((item, i) => {
             if (index == i) return { ...item, eating_window: eating_window }
             return item
@@ -181,7 +182,7 @@ const CreateMealPlan = () => {
                                 placeholder="Total Calories"
                                 aria-label="id"
                                 disabled
-                                value={`${data?.calories}` || 'Auto-generated'}
+                                value={`${parseFloat(data?.calories).toFixed(2)}` || 'Auto-generated'}
                             />
                         </Col>
                         <Col>
@@ -191,7 +192,7 @@ const CreateMealPlan = () => {
                                 placeholder="Total Calories"
                                 aria-label="id"
                                 disabled
-                                value={`${data?.protien}` || 'Auto-generated'}
+                                value={`${parseFloat(data?.protein).toFixed(2)}` || 'Auto-generated'}
                             />
                         </Col>
                         <Col>
@@ -201,7 +202,7 @@ const CreateMealPlan = () => {
                                 placeholder="Total Calories"
                                 aria-label="id"
                                 disabled
-                                value={`${data?.fat}` || 'Auto-generated'}
+                                value={`${parseFloat(data?.fat).toFixed(2)}` || 'Auto-generated'}
                             />
                         </Col>
                         <Col>
@@ -211,7 +212,7 @@ const CreateMealPlan = () => {
                                 placeholder="Total Calories"
                                 aria-label="id"
                                 disabled
-                                value={`${data?.carb}` || 'Auto-generated'}
+                                value={`${parseFloat(data?.carb).toFixed(2)}` || 'Auto-generated'}
                             />
                         </Col>
                         <Col>
@@ -307,7 +308,7 @@ const CreateMealPlan = () => {
                                         <tbody>
                                             {
                                                 data?.items?.map((item, index) => (
-                                                    <tr>
+                                                    <tr key={index}>
                                                         <td>{item?.food?.name}</td>
                                                         <td>{item?.food?.calories}</td>
                                                         <td>{item?.food?.serving_size}</td>
@@ -321,7 +322,7 @@ const CreateMealPlan = () => {
                                                             />
                                                         </td>
                                                         <td>
-                                                            <Form.Control value={data?.items[index]?.eating_window?.id || "Select"} as="select" onChange={(e) => onChangeFoodEatingWindow(e, foodTypes, index)}>
+                                                            <Form.Control value={data?.items[index]?.eating_window?.id || "Select"} as="select" onChange={(e) => onChangeFoodEatingWindow(e, eatingWindow, index)}>
                                                                 <option key={0}>Select</option>
                                                                 {
                                                                     eatingWindow.map(type => <option value={type.id} key={type.id}>{type?.name}</option>)
