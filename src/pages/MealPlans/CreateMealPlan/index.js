@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Form, FormControl, Row, Table } from 'react-bootstrap';
+import { sortBy } from 'lodash';
 import { useHistory, useParams } from 'react-router-dom';
 import Api from '../../../api';
 import Header from '../../../components/header';
@@ -29,7 +30,7 @@ const CreateMealPlan = () => {
     const loadData = async (id) => {
         try {
             const response = await Api.get(`/meal_plan/${id}`);
-            setData(response.data);
+            sortAndSaveData(response.data);
         } catch (error) {
 
         }
@@ -55,14 +56,24 @@ const CreateMealPlan = () => {
             const response = await func('/meal_plan', data);
             if (response.error) alert(response.error?.message || 'Meal creation failed ');
             else {
-                alert('Mealplan successfully created!');
-                history.replace(`/meal-plans/${response.data.id}`)
+                alert('Mealplan successfully updated!');
+                sortAndSaveData(response.data);
+                history.replace(`/meal-plans/${response.data.id}`);
             }
             setSaving(false)
         } catch (error) {
             setSaving(false)
             alert(error.message || 'Meal creation failed ');
         }
+    }
+
+    const sortAndSaveData = (data) => {
+        const {items,...filteredData} = data;
+        const sortedItems = sortBy(items, o => o.eating_window?.id);
+        setData({
+                ...filteredData,
+                items: sortedItems
+        })
     }
 
     const goBack = () => {
@@ -114,7 +125,6 @@ const CreateMealPlan = () => {
             protein,
             carb
         })
-        console.log(data.items);
     }
 
     const onChangeFoodEatingWindow = (e, meta, index) => {

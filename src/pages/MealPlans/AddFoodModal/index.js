@@ -28,7 +28,6 @@ const AddFoodModal = ({ onSelect, show, onClose }) => {
             return 
         }
         else if(isFinite(query)){
-            console.log("finite number")
             const upperLimit = parseInt(query) + 50;
             const lowerLimit = parseInt(query) - 50;
 

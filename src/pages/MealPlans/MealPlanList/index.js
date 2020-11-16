@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Row, Table } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
+import { sortBy } from 'lodash';
 import Api from '../../../api';
 import Header from '../../../components/header';
 import withAuth from '../../../hoc/withAuth';
@@ -21,7 +22,7 @@ const MealPlanList = () => {
     const loadMealPlans = async () => {
         try {
             const response = await Api.get('/meal_plan');
-            setMealPlanList(response.data);
+            setMealPlanList(sortBy(response.data,o=>o.id));
         } catch (error) {
 
         }
